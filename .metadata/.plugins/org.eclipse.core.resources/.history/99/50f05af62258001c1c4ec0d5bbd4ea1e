@@ -1,0 +1,8 @@
+package com.bae.country;
+
+import org.springframework.boot.SpringApplication;
+
+public class SpringCountryApplication {
+	public static void main(String[] args) {
+	}
+}

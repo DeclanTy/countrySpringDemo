@@ -1,0 +1,67 @@
+package com.bae.country;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.bae.country.domain.Country;
+
+@RestController // tells spring its a controller
+				// REST compliant
+public class CountryController {
+	private CountryService service;
+
+	private List<Country> countries = new ArrayList<>();
+
+	@GetMapping("/hello") // endpoint
+	// get request at LH:8080/hello
+	// waht ever gets returned its put into the response body
+	// getMapping is equal, in a way, to console.log. This is just running html as
+	// the console
+	public String hello() {
+		return "Hello, World!";
+	}
+
+	@PostMapping("/create")
+	public Country createCountry(@RequestBody Country country) {
+
+		countries.add(country);
+		Country created = this.countries.get(this.countries.size() - 1);
+		System.out.println(created);
+		return created;
+	}
+	@GetMapping("/getAll")
+	public List<Country> getAllCountries() {
+		for(int i=0;i< countries.size();i++) {
+			System.out.println(getCountry(i));
+		}
+		return this.countries;
+	}
+
+	@GetMapping("/get/{id}")
+	public Country getCountry(@PathVariable Integer id) {
+		Country getCountry=countries.get(id);
+		return getCountry;
+	}
+	@PutMapping("/replace/{id}")
+	public Country replaceCountry(@PathVariable Integer id,@RequestBody Country newCountry) {
+		countries.set(id, newCountry);
+		System.out.println(getAllCountries());
+		return newCountry;
+	}
+	@DeleteMapping("/remove/{id}")
+	public void removeCountry(@PathVariable Integer id) {
+		Country removedCountry= countries.get(id);
+		countries.remove(removedCountry);
+		System.out.println(getAllCountries());
+		
+	}
+
+}

@@ -1,0 +1,40 @@
+package com.bae.country;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+
+import com.bae.country.domain.Country;
+
+public class CountryService {
+	private List<Country> countries = new ArrayList<>();
+
+	public Country createCountry(Country country) {
+
+		countries.add(country);
+		Country created = this.countries.get(this.countries.size() - 1);
+		System.out.println(created);
+		return created;
+	}
+
+	public List<Country> getAllCountries() {
+		return this.countries;
+	}
+
+	public Country getCountry(Integer id) {
+		Country getCountry = countries.get(id);
+		return getCountry;
+	}
+
+	public Country replaceCountry(Integer id, Country newCountry) {
+		countries.set(id, newCountry);
+
+		return newCountry;
+	}
+
+	public void removeCountry(Integer id) {
+		this.countries.remove(id.intValue());
+
+	}
+}

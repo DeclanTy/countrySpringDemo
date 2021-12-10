@@ -1,0 +1,11 @@
+INSERT INTO `country`(
+
+ `name`,
+ `population`,
+ `location`, 
+ `size`
+ ) VALUES (
+Argentina,
+31000000,
+South America,
+3000000);

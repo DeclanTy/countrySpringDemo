@@ -1,0 +1,17 @@
+package com.bae.country;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController // tells spring its a controller
+				// REST compliant
+public class CountryController {
+	
+	@GetMapping("/hello") //endpoint
+	//get request at LH:8080/hello
+	//waht ever gets returned its put into the response body
+	//getMapping is equal, in a way, to console.log. This is just running html as the console 
+	public String hello() {
+		return "Hello, World!";
+	}
+}

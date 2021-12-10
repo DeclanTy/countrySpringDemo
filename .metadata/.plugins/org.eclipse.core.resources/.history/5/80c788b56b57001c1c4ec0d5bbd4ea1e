@@ -1,0 +1,45 @@
+package com.bae.country.domain;
+
+public class Country {
+	private String name;
+	private Integer population;
+	private String location;
+	private Integer size;
+	public Country(String name, Integer population, String location, Integer size) {
+		super();
+		this.name = name;
+		this.population = population;
+		this.location = location;
+		this.size = size;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Integer getPopulation() {
+		return population;
+	}
+	public void setPopulation(Integer population) {
+		this.population = population;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public Integer getSize() {
+		return size;
+	}
+	public void setSize(Integer size) {
+		this.size = size;
+	}
+
+	
+	
+}
+
+
+

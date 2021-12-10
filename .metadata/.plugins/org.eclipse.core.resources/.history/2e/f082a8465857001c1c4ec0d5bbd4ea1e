@@ -1,0 +1,5 @@
+package com.bae.country.domain;
+
+public class Country {
+
+}

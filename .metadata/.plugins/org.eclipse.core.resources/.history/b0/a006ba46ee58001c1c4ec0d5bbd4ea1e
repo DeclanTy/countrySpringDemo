@@ -1,0 +1,5 @@
+package com.bae.country.web;
+
+public class CountryControllerIntegrationTest {
+
+}

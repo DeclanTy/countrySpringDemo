@@ -1,0 +1,1 @@
+INSERT INTO `Country`(`id`, `name`,`population`, `location`, `size`) VALUES (null,`Argentina`,31000000,`South America`,3000000);

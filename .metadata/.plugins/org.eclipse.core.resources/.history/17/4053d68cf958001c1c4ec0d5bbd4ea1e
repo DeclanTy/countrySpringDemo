@@ -1,0 +1,45 @@
+package com.bae.country;
+
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultMatcher;
+
+import com.bae.country.domain.Country;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+public class CountryControllerIntegrationTest {
+	@Autowired
+	private MockMvc mvc;
+
+	@Autowired
+	private ObjectMapper mapper;
+	
+	@Test
+	void testCreate() throws Exception{
+		Country testCountry = new Country( "Portugal",6000000,"Western Europe",400000);
+		String testCountryAsJSON= this.mapper.writeValueAsString(testCountry);
+		RequestBuilder req = post("/create").contentType(MediaType.APPLICATION_JSON).content(testCountryAsJSON);
+		
+		Country testCreatedCountry=new Country(1,"Sudan",26000000,"Africa",25000000);
+		String testCreatedCountryAsJSON=this.mapper.writeValueAsString(testCreatedCountry);
+		ResultMatcher checkStatus =status().is(201);
+		ResultMatcher checkBody=content().json(testCountryAsJSON);
+		
+		this.mvc.perform(req).andExpect(checkStatus).andExpect(checkBody);
+	}
+}

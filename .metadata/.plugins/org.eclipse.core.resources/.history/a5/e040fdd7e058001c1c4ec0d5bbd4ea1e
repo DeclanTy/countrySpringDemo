@@ -1,0 +1,26 @@
+package com.bae.country.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bae.country.domain.Country;
+import com.bae.country.repo.CountryRepo;
+
+public class CountryServiceDB  implements CountryService{
+	
+	
+	private CountryRepo repo;
+	
+	@Autowired
+	public CountryServiceDB(CountryRepo repo) {
+		super();
+		this.repo = repo;
+	}
+
+
+	@Override
+	public Country createCountry(Country country) {
+		Country created = this.repo.save(country);
+		return null;
+	}
+
+}

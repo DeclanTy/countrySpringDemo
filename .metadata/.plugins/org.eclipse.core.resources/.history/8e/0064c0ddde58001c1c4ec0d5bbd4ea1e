@@ -1,0 +1,5 @@
+package com.bae.country.repo;
+
+public class CountryRepo {
+
+}
